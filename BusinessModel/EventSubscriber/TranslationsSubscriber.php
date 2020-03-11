@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Model\EventSubscriber;
+namespace HabanaTech\BusinessModel\EventSubscriber;
 
 use Doctrine\ORM\Events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -11,7 +11,7 @@ use Symfony\Component\Form\Event\SubmitEvent;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
-use App\Model\ORM\Interfaces\TranslatableInterface;
+use HabanaTech\BusinessModel\ORM\Interfaces\TranslatableInterface;
 use Symfony\Component\HttpKernel\Event\FinishRequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\PropertyAccess\PropertyAccess;

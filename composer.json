@@ -14,7 +14,10 @@
         "symfony/dependency-injection": "*",
         "symfony/property-access": "*",
         "symfony/orm-pack": "*",
-        "symfony/form": "*"
+        "symfony/form": "*",
+        "symfony/event-dispatcher": "*",
+        "symfony/options-resolver": "*",
+        "symfony/http-kernel": "*"
     },
     "autoload": {
         "psr-4": {

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Model\Form;
+namespace HabanaTech\BusinessModel\Form;
 
-use App\Model\EventSubscriber\TranslationsSubscriber;
-use App\Model\ORM\Interfaces\TranslatableInterface;
+use HabanaTech\BusinessModel\EventSubscriber\TranslationsSubscriber;
+use HabanaTech\BusinessModel\ORM\Interfaces\TranslatableInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Exception;
@@ -16,7 +16,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Model\AllowedLocales;
 use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 class MetadataTranslationType extends AbstractType implements DataMapperInterface
