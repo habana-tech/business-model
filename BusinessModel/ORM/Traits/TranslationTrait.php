@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HabanaTech\BusinessModel\ORM\Traits;
+namespace App\Model\ORM\Traits;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

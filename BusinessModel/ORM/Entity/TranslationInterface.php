@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-namespace HabanaTech\BusinessModel\ORM\Entity;
+namespace App\Model\ORM\Entity;
 
 interface TranslationInterface
 {

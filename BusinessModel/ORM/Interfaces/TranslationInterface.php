@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HabanaTech\BusinessModel\ORM\Interfaces;
+namespace App\Model\ORM\Interfaces;
 
 
 interface TranslationInterface

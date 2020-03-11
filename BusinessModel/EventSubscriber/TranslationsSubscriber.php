@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HabanaTech\BusinessModel\EventSubscriber;
+namespace App\Model\EventSubscriber;
 
 use Doctrine\ORM\Events;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

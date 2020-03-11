@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HabanaTech\BusinessModel\Form;
+namespace App\Model\Form;
 
 use App\Model\EventSubscriber\TranslationsSubscriber;
 use App\Model\ORM\Interfaces\TranslatableInterface;

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HabanaTech\BusinessModel\ORM\Traits;
+namespace App\Model\ORM\Traits;
 
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\PropertyAccess\PropertyAccessor;
