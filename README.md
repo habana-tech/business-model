@@ -1,12 +1,12 @@
-#HabanaTech/BusinessModel
+# HabanaTech/BusinessModel
 
 A package to group the diferent pieces of a common project.
 
-##Dynamic Metadata Field
+## Dynamic Metadata Field
 Add a field to hold any metadata on an Entity at DB.
 - Use the `HabanaTech\BusinessModel\ORM\Traits\MetadataFieldTrait` trait.
 
-##Dynamic translations
+## Dynamic translations
 Add a field to hold any translation as metadata on an Entity at DB.
 - Use the `HabanaTech\BusinessModel\ORM\Traits\MetadataFieldTrait` trait.
 - Use the `HabanaTech\BusinessModel\ORM\Traits\TranslationTrait` trait.
