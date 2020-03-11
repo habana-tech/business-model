@@ -27,3 +27,10 @@ Optionally, use the form theme for bootstrap 4
 HabanaTech\BusinessModel\Resources\views\metadata_translation_bootstrap_4_layout.html.twig
 
 To read, $entity->translate('fr') returns an array with the translated properties.
+
+You'll need add the services:
+
+`    
+    HabanaTech\BusinessModel\Form\MetadataTranslationType:  ~
+    HabanaTech\BusinessModel\EventSubscriber\TranslationsSubscriber: ~
+`
