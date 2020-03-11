@@ -5,7 +5,7 @@ namespace HabanaTech\BusinessModel\ORM\Traits;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use App\Model\ORM\Interfaces\TranslationInterface;
+use HabanaTech\BusinessModel\ORM\Interfaces\TranslationInterface;
 
 trait TranslationTrait
 {

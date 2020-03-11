@@ -17,7 +17,11 @@
         "symfony/form": "*",
         "symfony/event-dispatcher": "*",
         "symfony/options-resolver": "*",
-        "symfony/http-kernel": "*"
+        "symfony/http-kernel": "*",
+        "vich/uploader-bundle": "^1.13",
+        "liip/imagine-bundle": "^2.3",
+        "friendsofsymfony/ckeditor-bundle": "^2.2",
+        "ext-gd": "*"
     },
     "autoload": {
         "psr-4": {
