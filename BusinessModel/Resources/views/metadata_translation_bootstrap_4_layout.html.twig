@@ -1,0 +1,36 @@
+{% block metadata_translations_widget %}
+    {{ form_errors(form) }}
+
+    <div class="metadata_translations">
+{#        {{ dump(form) }}#}
+        <ul class="metadata_translations nav nav-tabs" role="tablist" style="margin: 0 -20px 20px -20px;">
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+
+            <li class="nav-item">
+                <a href="#{{ translationsFields.vars.id }}_metadata_translations-fields" class="nav-link {% if app.request.locale == locale %}active{% endif %}" data-toggle="tab" role="tab">
+                    {{ translationsFields.vars.label|default(locale|humanize)|trans }}
+                    {% if loop.first %}{{ '[Default]'|trans }}{% endif %}
+                    {% if translationsFields.vars.required %}*{% endif %}
+                </a>
+            </li>
+        {% endfor %}
+        </ul>
+
+        <div class="metadata_translationsFields tab-content">
+        {% for translationsFields in form %}
+            {% set locale = translationsFields.vars.name %}
+
+            <div id="{{ translationsFields.vars.id }}_metadata_translations-fields" class="tab-pane {% if app.request.locale == locale %}show active{% endif %} {% if not form.vars.valid %}sonata-ba-field-error{% endif %}" role="tabpanel">
+                <span class="text-muted">{{ locale }}</span>
+                {{ form_errors(translationsFields) }}
+                {{ form_widget(translationsFields) }}
+            </div>
+        {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block metadata_translationsForms_widget %}
+    {{ block('metadata_translations_widget') }}
+{% endblock %}

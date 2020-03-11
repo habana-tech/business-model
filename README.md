@@ -25,3 +25,5 @@ Add the Allowed languages as constants on your services.yml, example:
 
 Optionally, use the form theme for bootstrap 4
 HabanaTech\BusinessModel\Resources\views\metadata_translation_bootstrap_4_layout.html.twig
+
+To read, $entity->translate('fr') returns an array with the translated properties.

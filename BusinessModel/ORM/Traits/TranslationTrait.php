@@ -22,6 +22,12 @@ trait TranslationTrait
      */
     protected $defaultLocale = 'en';
 
+    /**
+     * @var array $translation
+     *
+     */
+    protected array $translation = [];
+
 
     /**
      * @var string
@@ -70,7 +76,7 @@ trait TranslationTrait
      *
      * @param string $locale The locale (en, ru, fr) | null If null, will try with current locale
      */
-    public function translate(?string $locale = null, bool $fallbackToDefault = true): TranslationInterface
+    public function translate(?string $locale = null, bool $fallbackToDefault = true): array
     {
         return $this->doTranslate($locale, $fallbackToDefault);
     }
@@ -100,118 +106,35 @@ trait TranslationTrait
 
 
     /**
-     * Returns translation for specific locale (creates new one if doesn't exists).
-     * If requested translation doesn't exist, it will first try to fallback default locale
-     * If any translation doesn't exist, it will be added to newTranslations collection.
-     * In order to persist new translations, call mergeNewTranslations method, before flush
+     * Returns translation for specific locale.
+     * If requested translation doesn't exist, it will try to fallback default locale
      *
      * @param string $locale The locale (en, ru, fr) | null If null, will try with current locale
      */
-    protected function doTranslate(?string $locale = null, bool $fallbackToDefault = true): TranslationInterface
+    protected function doTranslate(?string $locale = null, bool $fallbackToDefault = true): array
     {
         if ($locale === null) {
             $locale = $this->getCurrentLocale();
+        } else {
+            $this->locale = $locale;
         }
 
-        $translation = $this->findTranslationByLocale($locale);
-        if ($translation and ! $translation->isEmpty()) {
-            return $translation;
-        }
 
-        if ($fallbackToDefault) {
-            $fallbackLocale = $this->computeFallbackLocale($locale);
+        foreach ($this->getTranslations() as $key => $translation) {
 
-            if ($fallbackLocale) {
-                $translation = $this->findTranslationByLocale($fallbackLocale);
-                if ($translation) {
-                    return $translation;
-                }
+            if (isset($translation[$locale]) === true) {
+                $this->translation[$key] = $translation[$locale];
             }
-
-            $defaultTranslation = $this->findTranslationByLocale($this->getDefaultLocale(), false);
-            if ($defaultTranslation) {
-                return $defaultTranslation;
+            elseif ($fallbackToDefault && isset($translation[$this->defaultLocale]))
+            {
+                $this->translation[$key] = $translation[$this->defaultLocale];
             }
+            else $this->translation[$key] = null;
+
         }
 
-        if ($translation) {
-            return $translation;
-        }
-
-//        $class = static::getTranslationEntityClass();
-//
-//        /** @var TranslationInterface $translation */
-//        $translation = new $class();
-//        $translation->setLocale($locale);
-//
-//        $this->getNewTranslations()->set((string) $translation->getLocale(), $translation);
-//        $translation->setTranslatable($this);
-//
-//        return $translation;
+        return $this->translation;
     }
 
-    /**
-     * An extra feature allows you to proxy translated fields of a translatable entity.
-     *
-     * @return mixed The translated value of the field for current locale
-     */
-    protected function proxyCurrentLocaleTranslation(string $method, array $arguments = [])
-    {
-        // allow $entity->name call $entity->getName() in templates
-        if (! method_exists(self::getTranslationEntityClass(), $method)) {
-            $method = 'get' . ucfirst($method);
-        }
 
-        $translation = $this->translate($this->getCurrentLocale());
-
-        return call_user_func_array([$translation, $method], $arguments);
-    }
-
-    /**
-     * Finds specific translation in collection by its locale.
-     */
-    protected function findTranslationByLocale(string $locale, bool $withNewTranslations = true): ?TranslationInterface
-    {
-        $translation = $this->getTranslations()->get($locale);
-
-        if ($translation) {
-            return $translation;
-        }
-
-        if ($withNewTranslations) {
-            return $this->getNewTranslations()->get($locale);
-        }
-
-        return null;
-    }
-
-    /**
-     * @return false|string
-     */
-    protected function computeFallbackLocale($locale)
-    {
-        if (strrchr($locale, '_') !== false) {
-            return substr($locale, 0, -strlen(strrchr($locale, '_')));
-        }
-
-        return false;
-    }
-
-    private function ensureIsIterableOrCollection($translations): void
-    {
-        if ($translations instanceof Collection) {
-            return;
-        }
-
-        if (is_iterable($translations)) {
-            return;
-        }
-
-        throw new InvalidArgumentException(
-            sprintf(
-            '$translations parameter must be iterable or %s',
-            Collection::class
-        )
-        );
-    }
 }

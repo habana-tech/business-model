@@ -23,7 +23,7 @@ interface TranslatableInterface
      *
      * @param string $locale The locale (en, ru, fr) | null If null, will try with current locale
      */
-    public function translate(?string $locale = null, bool $fallbackToDefault = true): TranslationInterface;
+    public function translate(?string $locale = null, bool $fallbackToDefault = true): array;
 
     /**
      * Merges newly created translations into persisted translations.

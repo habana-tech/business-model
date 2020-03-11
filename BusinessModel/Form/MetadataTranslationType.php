@@ -17,6 +17,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use App\Model\AllowedLocales;
+use Symfony\Component\DependencyInjection\ParameterBag\ContainerBagInterface;
 
 class MetadataTranslationType extends AbstractType implements DataMapperInterface
 {
@@ -24,25 +25,37 @@ class MetadataTranslationType extends AbstractType implements DataMapperInterfac
      * @var TranslationsSubscriber $translationsSubscriber
      */
     private TranslationsSubscriber $translationsSubscriber;
+    /**
+     * @var ContainerBagInterface
+     */
+    private ContainerBagInterface $params;
 
     /**
      * MetadataTranslationType constructor.
      * @param TranslationsSubscriber $translationsSubscriber
      */
-    public function __construct(TranslationsSubscriber $translationsSubscriber)
-    {
+    public function __construct(
+        TranslationsSubscriber $translationsSubscriber,
+        ContainerBagInterface $params
+    ) {
         $this->translationsSubscriber = $translationsSubscriber;
+        $this->params = $params;
     }
 
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        dump($options);
-        exit();
         $builder->addEventSubscriber($this->translationsSubscriber);
 
-        foreach (AllowedLocales::LOCALES as $LOCALE) {
-            $builder->add($LOCALE, $options['current_field_type']);
+        // Default Locale.
+        $locale = $this->params->get('default_locale') ?? 'en';
+
+        $builder->add($locale, $options['current_field_type']);
+
+        foreach (explode('|', $this->params->get('app_locales')) as $lang) {
+            if ($locale !== $lang) {
+                $builder->add($lang, $options['current_field_type']);
+            }
         }
 
         $builder->setDataMapper($this);
@@ -88,7 +101,6 @@ class MetadataTranslationType extends AbstractType implements DataMapperInterfac
         $forms  = iterator_to_array($forms);
         $entity = null;
         if (is_array($forms) === true) {
-
             $parent = $forms[array_key_first($forms)];
             while ($parent instanceof Form && ($parent->getViewData() instanceof TranslatableInterface) === false) {
                 $parent = $parent->getParent();
