@@ -12,7 +12,7 @@ trait GalleryFieldTrait
 {
 
     /**
-     * @ORM\ManyToMany(targetEntity="HabanaTech\BusinessModel\ORM\Image", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="HabanaTech\BusinessModel\ORM\Entity\Image", cascade={"persist"})
      */
     private $gallery;
 
