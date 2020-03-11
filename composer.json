@@ -1,0 +1,23 @@
+{
+    "name": "habanatech/business-model",
+    "description": "A package to group the diferent pieces of a common project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Josue Miguel",
+            "email": "josmiguel92@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=7.4.0",
+        "symfony/dependency-injection": "*",
+        "symfony/property-access": "*",
+        "symfony/form": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "HabanaTech\\BusinessModel\\": "BusinessModel"
+        }
+    }
+}
