@@ -13,6 +13,7 @@
         "php": ">=7.4.0",
         "symfony/dependency-injection": "*",
         "symfony/property-access": "*",
+        "symfony/orm-pack": "*",
         "symfony/form": "*"
     },
     "autoload": {
