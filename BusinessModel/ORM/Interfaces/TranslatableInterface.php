@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Model\ORM\Interfaces;
+namespace HabanaTech\BusinessModel\ORM\Interfaces;
 
 use Doctrine\Common\Collections\Collection;
 
