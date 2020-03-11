@@ -17,20 +17,25 @@ example:
 	`- { property: 'title', type: 'HabanaTech\BusinessModel\Form\MetadataTranslationType', type_options: { field: 'title'} }`
 
 Add the Allowed languages as constants on your services.yml, example:
-`
-	default_locale: en
-    locale: '%default_locale%'
-    app_locales: ch|en|fr|de|es
-`
+
+`   default_locale: en`
+
+`   locale: '%default_locale%'`
+
+`    app_locales: ch|en|fr|de|es`
+
 
 Optionally, use the form theme for bootstrap 4
-HabanaTech\BusinessModel\Resources\views\metadata_translation_bootstrap_4_layout.html.twig
+`'@HabanaTech_BusinessModel\metadata_translation_bootstrap_4_layout.html.twig'`
+add to your `twig.yaml` file
+`  paths:
+        '%kernel.project_dir%/vendor/habanatech/business-model/BusinessModel/templates': HabanaTech_BusinessModel
+`
 
 To read, $entity->translate('fr') returns an array with the translated properties.
 
 You'll need add the services:
 
-`    
-    HabanaTech\BusinessModel\Form\MetadataTranslationType:  ~
-    HabanaTech\BusinessModel\EventSubscriber\TranslationsSubscriber: ~
-`
+`    HabanaTech\BusinessModel\Form\MetadataTranslationType:  ~ `
+
+`    HabanaTech\BusinessModel\EventSubscriber\TranslationsSubscriber: ~`
