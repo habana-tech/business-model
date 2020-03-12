@@ -39,3 +39,16 @@ You'll need add the services:
 `    HabanaTech\BusinessModel\Form\MetadataTranslationType:  ~ `
 
 `    HabanaTech\BusinessModel\EventSubscriber\TranslationsSubscriber: ~`
+
+## Entities
+**Image, FilterTag, DescriptionFragment**
+These entities can be useful, remember add a listener to doctrine ORM for your relations
+https://symfony.com/doc/current/doctrine/resolve_target_entity.html   
+
+example: in file doctrine.yaml 
+
+``
+orm:
+    resolve_target_entities:
+        HabanaTech\BusinessModel\ORM\Entity\Image: App\Entity\Service
+``
