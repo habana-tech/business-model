@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HabanaTech\BusinessModel\ORM\Fields;
+namespace HabanaTech\BusinessModel\ORM\Traits;
 
 
 use HabanaTech\BusinessModel\ORM\FilterTag;
