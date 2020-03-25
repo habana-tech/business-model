@@ -75,6 +75,7 @@ trait TranslationTrait
      * In order to persist new translations, call mergeNewTranslations method, before flush
      *
      * @param string $locale The locale (en, ru, fr) | null If null, will try with current locale
+     * @return array
      */
     public function translate(?string $locale = null, bool $fallbackToDefault = true): array
     {
@@ -110,6 +111,7 @@ trait TranslationTrait
      * If requested translation doesn't exist, it will try to fallback default locale
      *
      * @param string $locale The locale (en, ru, fr) | null If null, will try with current locale
+     * @return array
      */
     protected function doTranslate(?string $locale = null, bool $fallbackToDefault = true): array
     {
@@ -129,7 +131,9 @@ trait TranslationTrait
             {
                 $this->translation[$key] = $translation[$this->defaultLocale];
             }
-            else $this->translation[$key] = null;
+            else {
+                $this->translation[$key] = null;
+            }
 
         }
 

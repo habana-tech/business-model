@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\DescriptionFragmentRepository")
+ * @ORM\Entity(repositoryClass="HabanaTech\BusinessModel\ORM\Repository\DescriptionFragmentRepository")
  * @Vich\Uploadable()
  */
 class DescriptionFragment implements ImageFieldInterface
@@ -22,17 +22,17 @@ class DescriptionFragment implements ImageFieldInterface
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $content;
+    private string $content;
 
     public function getId(): ?int
     {

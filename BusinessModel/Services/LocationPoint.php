@@ -1,7 +1,7 @@
 <?php
 
 
-namespace HabanaTech\BusinessModel\Services;;
+namespace HabanaTech\BusinessModel\Services;
 
 class LocationPoint
 {

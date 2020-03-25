@@ -5,6 +5,7 @@ namespace HabanaTech\BusinessModel\Form;
 
 use HabanaTech\BusinessModel\EventSubscriber\TranslationsSubscriber;
 use HabanaTech\BusinessModel\ORM\Interfaces\TranslatableInterface;
+use RuntimeException;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\DataMapperInterface;
 use Symfony\Component\Form\Exception;
@@ -32,6 +33,7 @@ class MetadataTranslationType extends AbstractType implements DataMapperInterfac
     /**
      * MetadataTranslationType constructor.
      * @param TranslationsSubscriber $translationsSubscriber
+     * @param ContainerBagInterface $params
      */
     public function __construct(
         TranslationsSubscriber $translationsSubscriber,
@@ -77,7 +79,7 @@ class MetadataTranslationType extends AbstractType implements DataMapperInterfac
             'field',
             static function (Options $options, $value): string {
                 if (empty($value) === true) {
-                    throw new \RuntimeException(sprintf('Missing "field" option of "MetadataTranslationType".'));
+                    throw new RuntimeException(sprintf('Missing "field" option of "MetadataTranslationType".'));
                 }
 
                 return $value;

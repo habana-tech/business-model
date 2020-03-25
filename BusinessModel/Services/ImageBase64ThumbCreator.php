@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ImageBase64ThumbCreator extends AbstractController
 {
-    private $base64data;
+    private string $base64data;
 
     /**
      * ImageBase64ThumbCreator constructor.

@@ -14,7 +14,7 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class DescriptionFragmentType extends AbstractType
 {
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('image', ImageUploadType::class, [
@@ -37,7 +37,7 @@ class DescriptionFragmentType extends AbstractType
         ;
     }
 
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => DescriptionFragment::class,

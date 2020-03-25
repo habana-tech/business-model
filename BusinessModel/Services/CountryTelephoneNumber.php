@@ -6,7 +6,7 @@ namespace HabanaTech\BusinessModel\Services;
 
 class CountryTelephoneNumber
 {
-    private $allCountries = 
+    private array $allCountries =
     [
         [ "Afghanistan", "af", "93" ], 
         [ "Albania (Shqipëri)", "al", "355" ], 
@@ -254,30 +254,32 @@ class CountryTelephoneNumber
         [ "Zimbabwe", "zw", "263" ], 
         [ "Åland Islands", "ax", "358", 1, [ "18" ] ] 
     ];
-    private $countryCodes;
-    private $number;
+    private array $countryCodes;
+    private string $number;
 
     public function __construct($number)
     {
         $this->number = $number;
-        if(stripos($number, '+') == 0)
-            foreach ($this->allCountries as $country){
+        if(strpos($number, '+') === 0) {
+            foreach ($this->allCountries as $country) {
                 $this->countryCodes[$country[2]] = [$country[0]];
-                if(isset($country[4]))
+                if (isset($country[4]))
                     foreach ($country[4] as $subcode)
-                        $this->countryCodes[$country[2].$subcode] = [$country[0]];
+                        $this->countryCodes[$country[2] . $subcode] = [$country[0]];
             }
+        }
     }
 
-    public function getCountryName(){
+    public function getCountryName(): string
+    {
         $number = $this->number;
         $country = "";
         // only interested in international numbers (starting with a plus)
-        if (stripos($number, '+') == 0) {
+        if (strpos($number, '+') === 0) {
             $numericChars = "";
 
             // iterate over chars
-            for ($i = 0; $i < strlen($number); $i++) {
+            for ($i = 0, $iMax = strlen($number); $i < $iMax; $i++) {
                 $c = substr($number, $i, 1);
                 // if char is number (https://stackoverflow.com/a/8935649/217866)
                 if ( is_numeric($c)) {

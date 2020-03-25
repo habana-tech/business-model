@@ -40,7 +40,7 @@ trait ImageFieldTrait
         return ($this->image instanceof Image && $this->image->getImageName() && $this->image->getImageName() !== 'no-image' );
     }
 
-    public function uploadImage()
+    public function uploadImage(): void
     {
         return;
     }
@@ -55,11 +55,12 @@ trait ImageFieldTrait
     {
         return $this->image;
     }
-    public function setUpdateImage($image = null){
+    public function setUpdateImage($image = null): void
+    {
 
     }
 
-    public function  uploadNewImage($image = null)
+    public function  uploadNewImage($image = null): void
     {
         return null;
 
@@ -67,7 +68,7 @@ trait ImageFieldTrait
 
 
     private $galleryImage;
-    public function setGalleryImage(Image $image)
+    public function setGalleryImage(Image $image): void
     {
         $this->galleryImage = $image;
     }
@@ -102,8 +103,9 @@ trait ImageFieldTrait
      */
     public function getImageField(): SingleImageFromGallery
     {
-        if($this->imageField === null)
+        if($this->imageField === null) {
             $this->imageField = new SingleImageFromGallery();
+        }
         return $this->imageField;
     }
 

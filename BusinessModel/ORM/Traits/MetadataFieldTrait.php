@@ -35,9 +35,9 @@ trait MetadataFieldTrait
     {
         if (is_array($this->metadata)) {
             return $this->metadata;
-        } else {
-            return [];
         }
+
+        return [];
     }
 
     public function setMetadata(?array $metadata): self

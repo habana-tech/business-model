@@ -10,7 +10,7 @@ trait ActiveFieldTrait
       /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $active;
+    private bool $active;
 
 
     public function getActive(): ?bool

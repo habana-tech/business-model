@@ -21,15 +21,18 @@ class UtmCampaign
     public function getContent()
     {
         $tmp = $this->utm_campaign;
-        if($this->utm_medium)
-            $tmp .=  " | medium: ".$this->utm_medium;
-        if($this->utm_source)
-            $tmp .=  " | source: ".$this->utm_source;
+        if($this->utm_medium) {
+            $tmp .= " | medium: " . $this->utm_medium;
+        }
+        if($this->utm_source) {
+            $tmp .= " | source: " . $this->utm_source;
+        }
 
         return $tmp;
     }
 
-    public function getCampaign(){
+    public function getCampaign(): array
+    {
         return [
             'utm_source' => $this->utm_source,
             'utm_medium' => $this->utm_medium,

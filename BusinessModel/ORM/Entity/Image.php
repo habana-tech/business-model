@@ -13,7 +13,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ImageRepository")
+ * @ORM\Entity(repositoryClass="HabanaTech\BusinessModel\ORM\Repository\ImageRepository")
  * @Vich\Uploadable()
  */
 class Image
@@ -25,7 +25,7 @@ class Image
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
 
     /**
@@ -36,22 +36,22 @@ class Image
     /**
      * @ORM\Column(type="string", length=180, nullable=true)
      */
-    private $imageName;
+    private string $imageName;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $imageSize;
+    private int $imageSize;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $description;
+    private string $description;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private $base64;
+    private string $base64;
 
     public function getId(): ?int
     {
@@ -117,7 +117,14 @@ class Image
 
     public function __toString()
     {
-        return $this->description ?? $this->getImageName();
+        if($this->description !== null) {
+            return $this->description;
+        }
+        if(($name = $this->getImageName()) && $name !== null) {
+            return (string)$name;
+        }
+
+        return '';
     }
 
     public function getDescription(): ?string

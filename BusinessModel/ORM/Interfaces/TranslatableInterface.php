@@ -15,6 +15,7 @@ interface TranslatableInterface
 
 
     public function updateTranslations(): void;
+
     /**
      * Returns translation for specific locale (creates new one if doesn't exists).
      * If requested translation doesn't exist, it will first try to fallback default locale
@@ -22,11 +23,14 @@ interface TranslatableInterface
      * In order to persist new translations, call mergeNewTranslations method, before flush
      *
      * @param string $locale The locale (en, ru, fr) | null If null, will try with current locale
+     * @param bool $fallbackToDefault
+     * @return array
      */
     public function translate(?string $locale = null, bool $fallbackToDefault = true): array;
 
     /**
      * Merges newly created translations into persisted translations.
+     * @param string $locale
      */
 
 

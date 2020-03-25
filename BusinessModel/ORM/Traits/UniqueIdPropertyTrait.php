@@ -25,11 +25,11 @@ trait UniqueIdPropertyTrait {
     }
 
     /**
-     * @param mixed $uniqueId
+     * @param string $prefix
      */
-    public function setUniqueId(string $prefix = 'txd')
+    public function setUniqueId(string $prefix = ''): void
     {
-        $this->uniqueId = uniqid($prefix);
+        $this->uniqueId = uniqid($prefix, true);
     }
 
 

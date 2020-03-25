@@ -11,6 +11,9 @@
 
 namespace HabanaTech\BusinessModel\ORM\Fields\Timestampable;
 
+use DateTime;
+use DateTimeZone;
+
 /**
  * Timestampable trait.
  *
@@ -21,9 +24,9 @@ trait TimestampableMethods
     /**
      * Returns createdAt value.
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreatedAt()
+    public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
@@ -31,18 +34,18 @@ trait TimestampableMethods
     /**
      * Returns updatedAt value.
      *
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getUpdatedAt()
+    public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param \DateTime $createdAt
+     * @param DateTime $createdAt
      * @return $this
      */
-    public function setCreatedAt(\DateTime $createdAt)
+    public function setCreatedAt(DateTime $createdAt)
     {
         $this->createdAt = $createdAt;
 
@@ -50,10 +53,10 @@ trait TimestampableMethods
     }
 
     /**
-     * @param \DateTime $updatedAt
+     * @param DateTime $updatedAt
      * @return $this
      */
-    public function setUpdatedAt(\DateTime $updatedAt)
+    public function setUpdatedAt(DateTime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
 
@@ -63,11 +66,11 @@ trait TimestampableMethods
     /**
      * Updates createdAt and updatedAt timestamps.
      */
-    public function updateTimestamps()
+    public function updateTimestamps(): void
     {
         // Create a datetime with microseconds
-        $dateTime = \DateTime::createFromFormat('U.u', sprintf('%.6F', microtime(true)));
-        $dateTime->setTimezone(new \DateTimeZone(date_default_timezone_get()));
+        $dateTime = DateTime::createFromFormat('U.u', sprintf('%.6F', microtime(true)));
+        $dateTime->setTimezone(new DateTimeZone(date_default_timezone_get()));
 
         if (null === $this->createdAt) {
             $this->createdAt = $dateTime;

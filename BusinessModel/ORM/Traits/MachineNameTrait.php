@@ -34,11 +34,9 @@ trait MachineNameTrait
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function generateMachineName()
+    public function generateMachineName(): string
     {
-        $machineName = $this->machineName == null ?
-            strtolower(trim(preg_replace('/[^A-Za-z0-9]+/', '_', $this->getNameFieldValue()), '_'))
-            : $this->machineName;
+        $machineName = $this->machineName ?? strtolower(trim(preg_replace('/[^A-Za-z0-9]+/', '_', $this->getNameFieldValue()), '_'));
         $this->setMachineName($machineName);
         return $this->machineName;
     }

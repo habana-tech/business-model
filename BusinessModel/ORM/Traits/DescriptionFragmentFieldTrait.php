@@ -34,12 +34,14 @@ trait DescriptionFragmentFieldTrait
     /**
      * @return Collection|DescriptionFragment[]
      */
-    public function getDescriptionFragments():? Collection
+    public function getDescriptionFragments():? ArrayCollection
     {
-        if($this->descriptionFragments->count() > 1)
-         return self::orderedDescriptionFragments($this->descriptionFragments);
-        else
+        if($this->descriptionFragments->count() > 1) {
+            return self::orderedDescriptionFragments($this->descriptionFragments);
+        }
+        else {
             return $this->descriptionFragments;
+        }
 
     }
 
@@ -62,7 +64,7 @@ trait DescriptionFragmentFieldTrait
         return $this;
     }
 
-    public static function orderedDescriptionFragments($collection)
+    public static function orderedDescriptionFragments($collection): ArrayCollection
     {
              // get a new ArrayIterator
             $iterator = $collection->getIterator();

@@ -15,11 +15,12 @@ use HabanaTech\BusinessModel\ORM\Interfaces\TranslatableInterface;
 use Symfony\Component\HttpKernel\Event\FinishRequestEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\PropertyAccess\PropertyAccess;
+use Symfony\Component\PropertyAccess\PropertyAccessorInterface;
 
 class TranslationsSubscriber implements EventSubscriberInterface
 {
     /**
-     * @var \Symfony\Component\PropertyAccess\PropertyAccessorInterface
+     * @var PropertyAccessorInterface
      */
     private $propertyAccessor;
 
@@ -46,7 +47,7 @@ class TranslationsSubscriber implements EventSubscriberInterface
     }
 
 
-    public function submit(SubmitEvent $event)
+    public function submit(SubmitEvent $event): void
     {
         $entity = $event->getForm()->getParent()->getNormData();
         if ($entity instanceof TranslatableInterface === false) {
@@ -59,7 +60,7 @@ class TranslationsSubscriber implements EventSubscriberInterface
     }
 
 
-    public function preSubmit(PreSubmitEvent $event)
+    public function preSubmit(PreSubmitEvent $event): void
     {
 //        dump($event);
         if ($event->getForm()->getParent() !== null) {
@@ -89,8 +90,8 @@ class TranslationsSubscriber implements EventSubscriberInterface
 //        exit();
     }
 
-public function end(FinishRequestEvent $event)
- {
+public function end(FinishRequestEvent $event): void
+{
 //     exit();
 }
 }

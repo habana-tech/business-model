@@ -15,7 +15,7 @@ use HabanaTech\BusinessModel\ORM\Traits\ActiveFieldTrait;
 use HabanaTech\BusinessModel\ORM\Traits\PriorityFieldTrait;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\FilterTagRepository")
+ * @ORM\Entity(repositoryClass="HabanaTech\BusinessModel\ORM\Repository\FilterTagRepository")
  * @Vich\Uploadable()
  */
 class FilterTag
@@ -29,34 +29,24 @@ class FilterTag
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $title;
-
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Destination", mappedBy="filterTags")
-     */
-    private $destinations;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Activity", mappedBy="filterTags")
-     */
-    private $activities;
+    private string $title;
 
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $pinned;
+    private  bool $pinned;
 
     /**
      * @ORM\Column(type="string", length=180)
      */
-    private $iconName;
+    private string $iconName;
+
     /**
     * @Vich\UploadableField(mapping="tags_icons", fileNameProperty="iconName")
     */
@@ -64,8 +54,6 @@ class FilterTag
 
     public function __construct()
     {
-        $this->activities = new ArrayCollection();
-        $this->destinations = new ArrayCollection();
         $this->active = true;
     }
 
@@ -92,34 +80,6 @@ class FilterTag
         return $this->title;
     }
 
-    /**
-     * @return Collection|Activity[]
-     */
-    public function getActivities(): Collection
-    {
-        return $this->activities;
-    }
-
-    public function addActivity(Activity $activity): self
-    {
-        if (!$this->activities->contains($activity)) {
-            $this->activities[] = $activity;
-            $activity->addFilterTag($this);
-        }
-
-        return $this;
-    }
-
-    public function removeActivity(Activity $activity): self
-    {
-        if ($this->activities->contains($activity)) {
-            $this->activities->removeElement($activity);
-            $activity->removeFilterTag($this);
-        }
-
-        return $this;
-    }
-
 
     public function getPinned(): ?bool
     {
@@ -139,33 +99,6 @@ class FilterTag
         return $this->title;
     }
 
-    /**
-    * @return Collection|Destination[]
-    */
-    public function getDestinations(): Collection
-    {
-        return $this->destinations;
-    }
-
-    public function addDestination(Destination $destination): self
-    {
-        if (!$this->destinations->contains($destination)) {
-            $this->destinations[] = $destination;
-            $destination->addFilterTag($this);
-        }
-
-        return $this;
-    }
-
-    public function removeDestination(Destination $destination): self
-    {
-        if ($this->destinations->contains($destination)) {
-            $this->destinations->removeElement($destination);
-            $destination->removeFilterTag($this);
-        }
-
-        return $this;
-    }
 
     /**
      * @return mixed
