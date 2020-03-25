@@ -62,8 +62,7 @@ trait ImageFieldTrait
 
     public function  uploadNewImage($image = null): void
     {
-        return null;
-
+        
     }
 
 
