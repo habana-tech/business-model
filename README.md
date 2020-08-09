@@ -2,6 +2,10 @@
 
 A package to group the diferent pieces of a common project.
 
+##Install
+    
+    composer require habanatech/business-model
+
 ## Dynamic Metadata Field
 Add a field to hold any metadata on an Entity at DB.
 - Use the `HabanaTech\BusinessModel\ORM\Traits\MetadataFieldTrait` trait.

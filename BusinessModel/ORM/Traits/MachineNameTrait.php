@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 trait MachineNameTrait
 {
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180)
      */
     private $machineName;
 
