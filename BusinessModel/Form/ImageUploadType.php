@@ -2,6 +2,7 @@
 
 namespace HabanaTech\BusinessModel\Form;
 
+use App\Form\Types\AppImageUploaderType;
 use HabanaTech\BusinessModel\ORM\Entity\Image;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -14,10 +15,13 @@ class ImageUploadType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('imageFile', VichImageType::class, [
+            ->add('imageFile', AppImageUploaderType::class, [
                 'label' => 'Upload an Image',
                 'attr' => [
-                    'required' => false
+                    'required' => false,
+                    'accept' => "image/*",
+                    'style' => 'border solid 3px red;',
+                    'onchange' => 'preview_image(event); alert(100);'
                 ],
                 'required' => false
             ])

@@ -31,27 +31,27 @@ class Image
     /**
     * @Vich\UploadableField(mapping="images", fileNameProperty="imageName", size="imageSize")
     */
-    private $imageFile;
+    private ?File $imageFile = null;
 
     /**
      * @ORM\Column(type="string", length=180, nullable=true)
      */
-    private string $imageName;
+    private ?string $imageName = null;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private int $imageSize;
+    private ?int $imageSize = null;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private string $description;
+    private ?string $description = null;
 
     /**
      * @ORM\Column(type="text", nullable=true)
      */
-    private string $base64;
+    private ?string $base64 = null;
 
     public function getId(): ?int
     {

@@ -56,6 +56,18 @@ https://symfony.com/doc/current/doctrine/resolve_target_entity.html
 
 example: in file doctrine.yaml 
 
+
     orm:
         resolve_target_entities:
             HabanaTech\BusinessModel\ORM\Entity\Image: App\Entity\Service
+
+To adding all entities and ORM mapping
+
+        orm:
+        resolve_target_entities:
+            BusinessModel:
+                is_bundle: false
+                type: annotation
+                dir: '%kernel.project_dir%/vendor/habanatech/business-model/BusinessModel/ORM/Entity/'
+                prefix: HabanaTech\BusinessModel\ORM\Entity
+                alias: BusinessModel
