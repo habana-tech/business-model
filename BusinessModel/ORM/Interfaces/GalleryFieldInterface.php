@@ -6,7 +6,7 @@ namespace HabanaTech\BusinessModel\ORM\Interfaces;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use HabanaTech\BusinessModel\ORM\Image;
+use HabanaTech\BusinessModel\ORM\Entity\Image;
 
 interface GalleryFieldInterface
 {
