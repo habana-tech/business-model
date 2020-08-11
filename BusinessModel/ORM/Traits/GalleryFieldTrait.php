@@ -6,7 +6,8 @@ namespace HabanaTech\BusinessModel\ORM\Traits;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use HabanaTech\BusinessModel\ORM\Image;
+use Doctrine\ORM\Mapping as ORM;
+use HabanaTech\BusinessModel\ORM\Entity\Image;
 
 trait GalleryFieldTrait
 {
