@@ -8,6 +8,7 @@ use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -29,8 +30,8 @@ class Image
 
 
     /**
-    * @Vich\UploadableField(mapping="images", fileNameProperty="imageName", size="imageSize")
-    */
+     * @Vich\UploadableField(mapping="images", fileNameProperty="imageName", size="imageSize")
+     */
     private ?File $imageFile = null;
 
     /**
@@ -108,7 +109,7 @@ class Image
             $base64Converter = new ImageBase64ThumbCreator($file->getRealPath(), false);
             $this->setBase64($base64Converter->getBase64data());
             $this->updatedAt = new DateTimeImmutable();
-            if (!$this->description && $file->getFilename()) {
+            if ($file instanceof UploadedFile && !$this->description && $file->getFilename()) {
                 $this->description = substr(basename($file->getClientOriginalName()), 0, -4);
             }
         }
@@ -117,14 +118,8 @@ class Image
 
     public function __toString()
     {
-        if($this->description !== null) {
-            return $this->description;
-        }
-        if(($name = $this->getImageName()) && $name !== null) {
-            return (string)$name;
-        }
+        return $this->description ?? $this->imageName ?? '';
 
-        return '';
     }
 
     public function getDescription(): ?string
@@ -159,14 +154,14 @@ class Image
     public function validate(ExecutionContextInterface $context): void
     {
         if (
-            ! in_array($this->imageFile->getMimeType(), array(
+        ! in_array($this->imageFile->getMimeType(), array(
             'image/jpeg',
             'image/gif',
             'image/png',
             'image/svg+xml',
             'image/svg',
 
-            ))
+        ))
         ) {
             $context
                 ->buildViolation('Wrong file type (jpg,gif,png,svg)')
